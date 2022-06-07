@@ -1,0 +1,12 @@
+[
+  {
+    "name": "bok choy",
+    "color": "green",
+    "count": 1
+  },
+  {
+    "name": "carrot",
+    "color": "orange",
+    "count": 0
+  }
+]

@@ -36,3 +36,8 @@ module.exports.fetch = (entry) => {
     return rainbow.find({}).exec();
   }
 }
+
+// update DB when item clicked
+module.exports.update = (entry) => {
+  return rainbow.updateOne({ name: entry.name }, entry).exec();
+}

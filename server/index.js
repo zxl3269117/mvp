@@ -9,13 +9,19 @@ const app = express();
 app.use(express.static(path.join(__dirname, "/../client")));
 app.use(express.urlencoded({ extended: true }));
 
+// get all veggie/fruit data from DB
 app.get('/index', (req, res) => {
-  // get all veggie/fruit data from DB
-  res.status(200).json(exampleData);
+  db.fetch()
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
 });
 
+// handle post request for adding veggie/fruit with color with inital count set to 0
 app.post('/add-item', (req, res) => {
-  // handle post request for adding veggie/fruit w/ color, inital count set to 0
 
   console.log(req.body);
 
@@ -48,12 +54,18 @@ app.post('/add-item', (req, res) => {
     .catch(err => {
       res.status(500).send('fail to fetch entry. Error message: ' + err);
     })
-
-  // MAKE SURE ERRORS ARE PASSED TO THE CLIENT
 })
 
-app.post('/click-item', (req, res) => {
-  // handle post request for adding count on veggie/fruit
+// handle post request for adding count on veggie/fruit
+app.patch('/click-item', (req, res) => {
+  var clicked = req.body;
+  db.update(clicked)
+    .then(result => {
+      res.sendStatus(204);
+    })
+    .catch(err => {
+      res.sendStatus(500);
+    })
 })
 
 const port = 7777;

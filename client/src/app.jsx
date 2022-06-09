@@ -16,6 +16,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getAll();
+  }
+
+  getAll() {
     axios.get("/index")
       .then(response => {
         console.log(response.data);
@@ -34,15 +38,13 @@ class App extends React.Component {
       category: add.category
     })
       .then(response => {
-        // once successfully added, update the state "https://reactjs.org/docs/faq-state.html"
-        // to re-render Tracker and List component to reflect the user's addition of veggie/fruit
-
         console.log("post successfully");
-        axios.get("/index")
-          .then(response => {
-            this.setState({ data: response.data});
-          })
-          .catch( err => console.log(err) );
+        this.getAll();
+        // axios.get("/index")
+        //   .then(response => {
+        //     this.setState({ data: response.data});
+        //   })
+        //   .catch( err => console.log(err) );
       })
       .catch( err => console.log(err) );
   }

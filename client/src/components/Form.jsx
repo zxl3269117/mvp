@@ -33,10 +33,12 @@ class Form extends React.Component {
           <input type="text" value={this.state.name} name="name" required onChange={this.handleChange}></input>
         </label>
         <label>
+          {/* update to be a drop down single selection */}
           Color:
           <input type="text" value={this.state.color} name="color" required onChange={this.handleChange}></input>
         </label>
         <label>
+          {/* update to be a drop down single selection */}
           Category:
           <input type="text" value={this.state.category} name="category" required onChange={this.handleChange}></input>
         </label>

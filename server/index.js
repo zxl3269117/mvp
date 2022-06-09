@@ -7,6 +7,7 @@ var exampleData = require("../example-data.json");
 const app = express();
 
 app.use(express.static(path.join(__dirname, "/../client")));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // get all veggie/fruit data from DB
@@ -22,9 +23,7 @@ app.get('/index', (req, res) => {
 
 // handle post request for adding veggie/fruit with color with inital count set to 0
 app.post('/add-item', (req, res) => {
-
-  console.log(req.body);
-
+  // console.log('req.body', req.body);
   var entry = req.body;
 
   // convert all data to lowercase
@@ -43,7 +42,7 @@ app.post('/add-item', (req, res) => {
         // save entry to DB
         db.save(entry)
           .then(result => {
-            console.log('added successfully', result);
+            // console.log('added successfully', result);
             res.status(201).send(result);
           })
           .catch(err => {

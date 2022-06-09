@@ -1,10 +1,17 @@
 import React from "react";
 
 function ItemList(props) {
+
+  var list = props.items.map(item => {
+    if (item.count) {
+      return <span key={item._id}>{item.name} {item.count}, </span>
+    } else {
+      return <span key={item._id}>{item.name}, </span>
+    }
+  })
+
   return (
-    <div>
-      <h2>Display list of veggies/fruits in each color category</h2>
-    </div>
+    <div>{list}</div>
   )
 }
 

@@ -2,9 +2,9 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import axios from "axios";
 
-import Form from "./components/Form";
-import Tracker from "./components/Tracker";
-import ItemList from "./components/ItemList";
+import Form from "./components/Form.jsx";
+import Tracker from "./components/Tracker.jsx";
+import ColorList from "./components/ColorList.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,18 @@ class App extends React.Component {
     axios.get("/index")
       .then(response => {
         console.log(response.data);
-        this.setState({ data: response.data });
+        // conver data into this format {red: [], yellow: [], ...}
+        var convertedData = response.data.reduce((accumulator, item) => {
+          var color = item.color;
+          if(accumulator[color]) {
+            accumulator[color].push(item);
+          } else {
+            accumulator[color] = [item];
+          }
+          return accumulator;
+        }, {})
+        console.log(convertedData);
+        this.setState({ data: convertedData });
       })
       .catch(err => {
         console.log(err);
@@ -40,11 +51,6 @@ class App extends React.Component {
       .then(response => {
         console.log("post successfully");
         this.getAll();
-        // axios.get("/index")
-        //   .then(response => {
-        //     this.setState({ data: response.data});
-        //   })
-        //   .catch( err => console.log(err) );
       })
       .catch( err => console.log(err) );
   }
@@ -55,7 +61,7 @@ class App extends React.Component {
         <h1>Welcome to the Rainbow Challenge!</h1>
         <Form handleAdd={this.handleAdd}/>
         <Tracker />
-        <ItemList />
+        <ColorList allItems={this.state.data}/>
       </div>
     )
   }

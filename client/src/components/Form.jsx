@@ -21,7 +21,6 @@ class Form extends React.Component {
   handleSubmit(event) {
     console.log('triggered?');
     this.props.handleAdd(this.state);
-    // event.preventDefault();
   }
 
   render() {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --mode development --watch",
+    "react-dev": "webpack --mode development --watch",
     "server": "nodemon server/index.js"
   },
   "repository": {

@@ -10,7 +10,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: {},
+      colorCount: {},
+      total: 0
     }
     this.handleAdd = this.handleAdd.bind(this);
   }
@@ -23,9 +25,29 @@ class App extends React.Component {
     axios.get("/index")
       .then(response => {
         console.log(response.data);
-        // conver data into this format {red: [], yellow: [], ...}
+
+        var total = 0;
+        var colorCount = {};
+
+        // conver data ===> {red: [], yellow: [], ...}
+        // count total along the way
         var convertedData = response.data.reduce((accumulator, item) => {
           var color = item.color;
+          var count = item.count;
+
+          // count total
+          total += count;
+
+          // count color
+          if (count) {
+            colorCount[color] = colorCount[color] ? colorCount[color] += count : 1;
+            // if (colorCount[color]) {
+            //   colorCount[color] += count;
+            // } else {
+            //   colorCount[color] = 1;
+            // }
+          }
+
           if(accumulator[color]) {
             accumulator[color].push(item);
           } else {
@@ -33,8 +55,13 @@ class App extends React.Component {
           }
           return accumulator;
         }, {})
+
         console.log(convertedData);
-        this.setState({ data: convertedData });
+        this.setState({
+          data: convertedData,
+          colorCount: colorCount,
+          total: total
+        });
       })
       .catch(err => {
         console.log(err);
@@ -59,8 +86,8 @@ class App extends React.Component {
     return (
       <div>
         <h1>Welcome to the Rainbow Challenge!</h1>
+        <Tracker colorCount={this.state.colorCount} total={this.state.total}/>
         <Form handleAdd={this.handleAdd}/>
-        <Tracker />
         <ColorList allItems={this.state.data}/>
       </div>
     )

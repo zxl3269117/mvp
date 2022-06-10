@@ -4,13 +4,12 @@ module.exports.convertDataForState = (data) => {
   var total = 0;
   var colorCount = {
     red: 0,
-    yellow: 0,
     orange: 0,
+    yellow: 0,
     green: 0,
     blue: 0,
-    purple: 0,
-    black: 0,
-    white: 0
+    ['purple/black']: 0,
+    ['white/tan']: 0
   };
 
   // conver data ===> {red: [], yellow: [], ...}

@@ -2,7 +2,8 @@ import React from "react";
 import ItemList from "./ItemList.jsx";
 
 function ColorList(props) {
-  var colors = Object.keys(props.allItems);
+  var colors = Object.keys(props.colorCount);
+  console.log(colors);
   return (
     <div>
       <h2>The Rainbow List</h2>
@@ -10,7 +11,9 @@ function ColorList(props) {
         return (
           <div>
             <h4>{color}</h4>
-            <ItemList items={props.allItems[color]} key={color} handleClick={props.handleClick}/>
+            {props.allItems[color] &&
+              <ItemList items={props.allItems[color]} key={color} handleClick={props.handleClick}/>
+            }
           </div>
         )
       })}</div>

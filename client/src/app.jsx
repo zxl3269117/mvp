@@ -19,8 +19,8 @@ class App extends React.Component {
         yellow: 0,
         green: 0,
         blue: 0,
-        purple: 0,
-        white: 0
+        ['purple/black']: 0,
+        ['white/tan']: 0
       },
       total: 0,
       error: ''
@@ -85,7 +85,7 @@ class App extends React.Component {
         <h1>Welcome to the Rainbow Challenge!</h1>
         <Heading colorCount={this.state.colorCount} total={this.state.total} />
         <Tracker colorCount={this.state.colorCount} />
-        <ColorList allItems={this.state.data} handleClick={this.handleClick}/>
+        <ColorList allItems={this.state.data} colorCount={this.state.colorCount} handleClick={this.handleClick}/>
         <Form handleAdd={this.handleAdd} error={this.state.error}/>
       </div>
     )

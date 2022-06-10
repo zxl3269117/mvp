@@ -22,9 +22,10 @@ function Heading(props) {
 
   return (
     <div>
-      <h2>One cup at a time, paint your plate with colors from veggies and fruits!</h2>
-      <p>{colorMessage}</p>
-      <p>{totalMessage}</p>
+      <h3>One color at a time, paint your plate with from veggies and fruits!</h3>
+      <p>When you eat a cup of vegetable or fruit on the list, click it to add to your intakes. The app will track everything for you. Enjoy the challenge and the boost of your health!</p>
+      <h4>{colorMessage}</h4>
+      <h4>{totalMessage}</h4>
     </div>
   )
 

@@ -7,7 +7,7 @@ function Tracker(props) {
 
   // construct color trackers list
   for(var color in props.colorCount) {
-    tracker.push(<li key={color}>Total {color}: {props.colorCount[color]}</li>);
+    tracker.push(<li key={color}>{color}: {props.colorCount[color]}</li>);
   }
 
   return (

@@ -52,6 +52,7 @@ class App extends React.Component {
 
     // clear the error state
     this.setState({ error: '' });
+
     axios.post("/add-item", {
       name: add.name,
       color: add.color,

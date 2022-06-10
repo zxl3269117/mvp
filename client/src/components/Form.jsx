@@ -6,8 +6,8 @@ class Form extends React.Component {
     super(props);
     this.state = {
       name: "",
-      color: "",
-      category: ""
+      color: "red",
+      category: "veggie"
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,8 +42,8 @@ class Form extends React.Component {
             <option value="yellow">Yellow</option>
             <option value="green">Green</option>
             <option value="blue">Blue</option>
-            <option value="purple">Purple/Black</option>
-            <option value="white">White/Tan</option>
+            <option value="purple/black">Purple/Black</option>
+            <option value="white/tan">White/Tan</option>
           </select>
         </label>
         <label>

@@ -55,12 +55,23 @@ app.post('/add-item', (req, res) => {
     })
 })
 
-// handle post request for adding count on veggie/fruit
+// handle patch request for adding count on veggie/fruit
 app.patch('/click-item', (req, res) => {
   var clicked = req.body;
   db.update(clicked)
     .then(result => {
       res.sendStatus(204);
+    })
+    .catch(err => {
+      res.sendStatus(500);
+    })
+})
+
+// handle delete request to clear count on all document
+app.delete('/restart', (req, res) => {
+  db.update()
+    .then(result => {
+      res.sendStatus(200);
     })
     .catch(err => {
       res.sendStatus(500);

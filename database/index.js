@@ -15,9 +15,18 @@ db.on('error', err => {
 })
 
 const rainbowSchema = new Schema({
-  name: String,
-  color: String,
-  category: String,
+  name: {
+    type: String,
+    require: true
+  },
+  color: {
+    type: String,
+    require: true
+  },
+  category: {
+    type: String,
+    require: true
+  },
   count: Number
 })
 
@@ -39,5 +48,9 @@ module.exports.fetch = (entry) => {
 
 // update DB when item clicked
 module.exports.update = (entry) => {
-  return rainbow.updateOne({ _id: entry._id }, entry).exec();
+  if(entry) {
+    return rainbow.updateOne({ _id: entry._id }, entry).exec();
+  } else {
+    return rainbow.updateMany({}, {count: 0}).exec();
+  }
 }

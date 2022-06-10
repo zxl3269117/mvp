@@ -23,13 +23,19 @@ class App extends React.Component {
         black: 0,
         white: 0
       },
-      total: 0
+      total: 0,
+      error: ''
     }
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.getAll();
+  }
+
+  componentWillUnmount() {
+
   }
 
   getAll() {
@@ -42,21 +48,40 @@ class App extends React.Component {
       })
       .catch(err => {
         console.log(err);
+        this.setState({ error: err });
       })
   }
 
   handleAdd(add) {
-    console.log(`${add.name} has been added`);
+    console.log(`adding ${add.name}`);
+
+    // clear the error state
+    this.setState({ error: '' });
     axios.post("/add-item", {
       name: add.name,
       color: add.color,
       category: add.category
     })
-      .then(response => {
-        console.log("post successfully");
+    .then(response => {
+      console.log("post successfully");
+      this.getAll();
+    })
+    .catch( err => {
+      console.log(err)
+      // set the error state if server responded with error
+      this.setState({ error: err });
+    });
+  }
+
+  handleClick(item) {
+    item.count ++;
+    console.log(`ate ${item.name}, now ${item.count}`);
+
+    axios.patch('/click-item', item)
+      .then(success => {
         this.getAll();
       })
-      .catch( err => console.log(err) );
+      .catch(err => { console.log(err) })
   }
 
   render() {
@@ -65,8 +90,8 @@ class App extends React.Component {
         <h1>Welcome to the Rainbow Challenge!</h1>
         <Heading colorCount={this.state.colorCount} total={this.state.total} />
         <Tracker colorCount={this.state.colorCount} />
-        <ColorList allItems={this.state.data}/>
-        <Form handleAdd={this.handleAdd}/>
+        <ColorList allItems={this.state.data} handleClick={this.handleClick}/>
+        <Form handleAdd={this.handleAdd} error={this.state.error}/>
       </div>
     )
   }

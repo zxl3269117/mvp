@@ -10,7 +10,7 @@ function ColorList(props) {
         return (
           <div>
             <h4>{color}</h4>
-            <ItemList items={props.allItems[color]} key={color}/>
+            <ItemList items={props.allItems[color]} key={color} handleClick={props.handleClick}/>
           </div>
         )
       })}</div>

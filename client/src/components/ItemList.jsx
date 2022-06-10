@@ -3,9 +3,9 @@ import React from "react";
 function ItemList(props) {
   var list = props.items.map(item => {
     if (item.count) {
-      return <span key={item._id}>{item.name} {item.count}, </span>
+      return <button key={item._id} onClick={() => { props.handleClick(item)}}>{item.name}: {item.count}</button>
     } else {
-      return <span key={item._id}>{item.name}, </span>
+      return <button key={item._id} onClick={() => { props.handleClick(item)}}>{item.name}</button>
     }
   })
 

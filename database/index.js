@@ -39,5 +39,5 @@ module.exports.fetch = (entry) => {
 
 // update DB when item clicked
 module.exports.update = (entry) => {
-  return rainbow.updateOne({ name: entry.name }, entry).exec();
+  return rainbow.updateOne({ _id: entry._id }, entry).exec();
 }

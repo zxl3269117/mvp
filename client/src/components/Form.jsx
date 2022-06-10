@@ -19,7 +19,6 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('triggered?');
     this.props.handleAdd(this.state);
   }
 
@@ -27,6 +26,9 @@ class Form extends React.Component {
     return (
       <form>
         <h4>Not seeing what you had? Add it yourself!</h4>
+        {this.props.error !== '' &&
+          <p>{this.props.error.response.data}</p>
+        }
         <label>
           Name:
           <input type="text" value={this.state.name} name="name" required onChange={this.handleChange}></input>

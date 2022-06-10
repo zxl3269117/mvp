@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import axios from "axios";
+import helper from "../../helper/clientHelper.js";
 
 import Form from "./components/Form.jsx";
 import Tracker from "./components/Tracker.jsx";
@@ -10,8 +11,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
-      colorCount: {},
+      data: {}, // {red: [{}, ...], yellow: [{}, ...], ...}
+      colorCount: {
+        red: 0,
+        yellow: 0,
+        orange: 0,
+        green: 0,
+        blue: 0,
+        purple: 0,
+        black: 0,
+        white: 0
+      },
       total: 0
     }
     this.handleAdd = this.handleAdd.bind(this);
@@ -26,42 +36,8 @@ class App extends React.Component {
       .then(response => {
         console.log(response.data);
 
-        var total = 0;
-        var colorCount = {};
-
-        // conver data ===> {red: [], yellow: [], ...}
-        // count total along the way
-        var convertedData = response.data.reduce((accumulator, item) => {
-          var color = item.color;
-          var count = item.count;
-
-          // count total
-          total += count;
-
-          // count color
-          if (count) {
-            colorCount[color] = colorCount[color] ? colorCount[color] += count : 1;
-            // if (colorCount[color]) {
-            //   colorCount[color] += count;
-            // } else {
-            //   colorCount[color] = 1;
-            // }
-          }
-
-          if(accumulator[color]) {
-            accumulator[color].push(item);
-          } else {
-            accumulator[color] = [item];
-          }
-          return accumulator;
-        }, {})
-
-        console.log(convertedData);
-        this.setState({
-          data: convertedData,
-          colorCount: colorCount,
-          total: total
-        });
+        var state = helper.convertDataForState(response.data);
+        this.setState(state);
       })
       .catch(err => {
         console.log(err);

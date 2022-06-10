@@ -8,7 +8,7 @@ function ColorList(props) {
       <h2>The Rainbow List</h2>
       <div>{colors.map(color => {
         return (
-          <div className={color}>
+          <div>
             <h4>{color}</h4>
             <ItemList items={props.allItems[color]} key={color}/>
           </div>

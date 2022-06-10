@@ -1,24 +1,41 @@
 import React from "react";
+import _ from "underscore";
+import helper from "../../../helper/clientHelper.js";
 
 function Tracker(props) {
-  var colorMessage, totalMessage, tracker;
-  if (props.count < 28) {
-    totalMessage = <p>{28 - props.count} more colors to go! You can do it!</p>
+  var colorMessage, totalMessage;
+  var tracker = [];
+
+  console.log('color counts', props.colorCount);
+
+  // construct color message
+  var missedColors = helper.missedColors(props.colorCount);
+  if(missedColors.length === 0) {
+    colorMessage = <p>What a unicorn achievement!</p>
+  } else {
+    colorMessage = <p>Get some <em>{missedColors[0]}</em> on your plate!</p>
+  }
+
+  // construct total count message
+  if (props.total < 28) {
+    totalMessage = <p><em>{28 - props.total}</em> more cups to go! You can do it!</p>
   } else {
     totalMessage = <h5>You beat 95% of Americans!</h5>
   }
 
-  // if all colors in colorCount has >0 value
-  if (props.colorCount) {
-
+  // construct color trackers
+  for(var color in props.colorCount) {
+    tracker.push(<li key={color}>Total {color}: {props.colorCount[color]}</li>);
   }
 
   return (
     <div>
-      <h2>Make your body ooooh happy by hitting the goal!</h2>
-      <p>__ more colors to go</p>
-      <p>__ more cups to go</p>
-      <h2>Display trackers showing number of veggies/fruit in each color AND the total number</h2>
+      <h2>One cup at a time, click on what you ate to boost your health!</h2>
+      <div>{colorMessage}</div>
+      <div>{totalMessage}</div>
+      <ul>Color status
+        {tracker}
+      </ul>
     </div>
   )
 }

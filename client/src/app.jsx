@@ -15,12 +15,11 @@ class App extends React.Component {
       data: {}, // {red: [{}, ...], yellow: [{}, ...], ...}
       colorCount: {
         red: 0,
-        yellow: 0,
         orange: 0,
+        yellow: 0,
         green: 0,
         blue: 0,
         purple: 0,
-        black: 0,
         white: 0
       },
       total: 0,
@@ -32,10 +31,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getAll();
-  }
-
-  componentWillUnmount() {
-
   }
 
   getAll() {

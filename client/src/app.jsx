@@ -4,6 +4,7 @@ import axios from "axios";
 import helper from "../../helper/clientHelper.js";
 
 import Form from "./components/Form.jsx";
+import Heading from "./components/Heading.jsx";
 import Tracker from "./components/Tracker.jsx";
 import ColorList from "./components/ColorList.jsx";
 
@@ -62,9 +63,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Welcome to the Rainbow Challenge!</h1>
-        <Tracker colorCount={this.state.colorCount} total={this.state.total}/>
-        <Form handleAdd={this.handleAdd}/>
+        <Heading colorCount={this.state.colorCount} total={this.state.total} />
+        <Tracker colorCount={this.state.colorCount} />
         <ColorList allItems={this.state.data}/>
+        <Form handleAdd={this.handleAdd}/>
       </div>
     )
   }

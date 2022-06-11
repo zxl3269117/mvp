@@ -41,9 +41,9 @@ class Form extends React.Component {
             <option value="orange">Orange</option>
             <option value="yellow">Yellow</option>
             <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="purple/black">Purple/Black</option>
-            <option value="white/tan">White/Tan</option>
+            <option value="blue/purple/black">Blue/Purple/Black</option>
+            <option value="white">White</option>
+            <option value="tan">Tan</option>
           </select>
         </label>
         <label>

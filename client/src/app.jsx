@@ -18,9 +18,9 @@ class App extends React.Component {
         orange: 0,
         yellow: 0,
         green: 0,
-        blue: 0,
-        ['purple/black']: 0,
-        ['white/tan']: 0
+        ['blue/purple/black']: 0,
+        white: 0,
+        tan: 0
       },
       total: 0,
       error: ''
@@ -96,7 +96,7 @@ class App extends React.Component {
         <Heading />
         <Tracker colorCount={this.state.colorCount} total={this.state.total} handleReset={this.handleReset}/>
         <ColorList allItems={this.state.data} colorCount={this.state.colorCount} handleClick={this.handleClick}/>
-        <Form handleAdd={this.handleAdd} error={this.state.error}/>
+        <Form handleAdd={this.handleAdd} colors={this.state.colorCount} error={this.state.error}/>
       </div>
     )
   }

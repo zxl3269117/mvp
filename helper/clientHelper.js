@@ -7,12 +7,12 @@ module.exports.convertDataForState = (data) => {
     orange: 0,
     yellow: 0,
     green: 0,
-    blue: 0,
-    ['purple/black']: 0,
-    ['white/tan']: 0
+    ['blue/purple/black']: 0,
+    white: 0,
+    tan: 0
   };
 
-  // conver data ===> {red: [], yellow: [], ...}
+  // conver data ===> {red: [], orange: [], ...}
   var convertedData = _.reduce(data, (accumulator, item) => {
     var color = item.color;
     var count = item.count;

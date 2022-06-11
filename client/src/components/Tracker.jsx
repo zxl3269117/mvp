@@ -27,7 +27,8 @@ function Tracker(props) {
   }
 
   return (
-    <div>
+    <div className='tracker'>
+      <h3>Rainbow Meter</h3>
       <h4>{colorMessage}</h4>
       <h4>{totalMessage}</h4>
       <ul>Color status:

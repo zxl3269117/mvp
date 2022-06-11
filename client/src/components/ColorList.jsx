@@ -8,7 +8,7 @@ function ColorList(props) {
       <h2>The Rainbow List</h2>
       <div>{colors.map(color => {
         return (
-          <div>
+          <div className={color}>
             <h4>{color}</h4>
             {props.allItems[color] &&
               <ItemList items={props.allItems[color]} key={color} handleClick={props.handleClick}/>

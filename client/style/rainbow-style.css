@@ -1,0 +1,44 @@
+body {
+  background-color: beige;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.rainbow {
+  background-image: url('../img/rainbow-foods.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+}
+
+.heading {
+  background-color: rgba(245, 245, 220, 0.626);
+  padding: 10px;
+}
+
+.tracker {
+  background-color: rgba(245, 245, 220, 0.626);
+}
+
+.red {
+  background-color: #ff6666c2;
+}
+
+.orange {
+  background-color: #ffbe55b4;
+}
+
+.yellow {
+  background-color: #ffff66b1;
+}
+
+.green {
+  background-color: #6fe24fa5;
+}
+
+.blue\/purple\/black {
+  background-color: #a787ffab;
+}
+
+.tan {
+  background-color: #7d552491;
+}

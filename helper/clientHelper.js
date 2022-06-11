@@ -20,7 +20,7 @@ module.exports.convertDataForState = (data) => {
     // count total
     total += count;
     // count color
-    colorCount[color] = count;
+    colorCount[color] += count;
 
     if(accumulator[color]) {
       accumulator[color].push(item);

@@ -27,6 +27,7 @@ class App extends React.Component {
     }
     this.handleAdd = this.handleAdd.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   componentDidMount() {
@@ -80,12 +81,20 @@ class App extends React.Component {
       .catch(err => { console.log(err) })
   }
 
+  handleReset() {
+    console.log('reset the tracker');
+    axios.delete("/restart")
+      .then(success => {
+        this.getAll();
+      })
+  }
+
   render() {
     return (
       <div>
         <h1>Welcome to the Rainbow Challenge!</h1>
         <Heading colorCount={this.state.colorCount} total={this.state.total} />
-        <Tracker colorCount={this.state.colorCount} />
+        <Tracker colorCount={this.state.colorCount} handleReset={this.handleReset}/>
         <ColorList allItems={this.state.data} colorCount={this.state.colorCount} handleClick={this.handleClick}/>
         <Form handleAdd={this.handleAdd} error={this.state.error}/>
       </div>

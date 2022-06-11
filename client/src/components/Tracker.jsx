@@ -15,6 +15,7 @@ function Tracker(props) {
       <ul>Color status:
         {tracker}
       </ul>
+      <button onClick={props.handleReset}>Start a new week</button>
     </div>
   )
 }

@@ -3,7 +3,6 @@ import ItemList from "./ItemList.jsx";
 
 function ColorList(props) {
   var colors = Object.keys(props.colorCount);
-  console.log(colors);
   return (
     <div>
       <h2>The Rainbow List</h2>

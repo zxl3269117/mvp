@@ -1,11 +1,12 @@
 body {
   background-color: beige;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 10px 20px;
+  margin: 10px;
 }
 
 .rainbow {
   background-image: url('../img/rainbow-foods.png');
-  background-repeat: no-repeat;
   background-size: cover;
   padding: 10px;
 }

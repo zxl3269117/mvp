@@ -93,8 +93,8 @@ class App extends React.Component {
     return (
       <div>
         <h1>Welcome to the Rainbow Challenge!</h1>
-        <Heading colorCount={this.state.colorCount} total={this.state.total} />
-        <Tracker colorCount={this.state.colorCount} handleReset={this.handleReset}/>
+        <Heading />
+        <Tracker colorCount={this.state.colorCount} total={this.state.total} handleReset={this.handleReset}/>
         <ColorList allItems={this.state.data} colorCount={this.state.colorCount} handleClick={this.handleClick}/>
         <Form handleAdd={this.handleAdd} error={this.state.error}/>
       </div>

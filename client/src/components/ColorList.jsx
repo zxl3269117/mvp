@@ -4,9 +4,10 @@ import ItemList from "./ItemList.jsx";
 function ColorList(props) {
   var colors = Object.keys(props.colorCount);
   return (
-    <div>
+    <>
       <h2>The Rainbow List</h2>
-      <div>{colors.map(color => {
+      <div className="color-list">
+        {colors.map(color => {
         return (
           <div className={color}>
             <h4>{color}</h4>
@@ -16,7 +17,7 @@ function ColorList(props) {
           </div>
         )
       })}</div>
-    </div>
+    </>
   )
 }
 

@@ -39,10 +39,10 @@ app.post('/add-item', (req, res) => {
         res.status(406).send('Error: already exsit');
       } else {
         entry.count = 0;
+
         // save entry to DB
         db.save(entry)
           .then(result => {
-            // console.log('added successfully', result);
             res.status(201).send(result);
           })
           .catch(err => {

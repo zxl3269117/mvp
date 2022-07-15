@@ -91,15 +91,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
+      <div className="heading">
         <h1>Welcome to the Rainbow Challenge!</h1>
-        <div className='rainbow'>
         <Heading />
+
         <Tracker colorCount={this.state.colorCount} total={this.state.total} handleReset={this.handleReset}/>
-        </div>
+      </div>
         <Form handleAdd={this.handleAdd} colors={this.state.colorCount} error={this.state.error}/>
         <ColorList allItems={this.state.data} colorCount={this.state.colorCount} handleClick={this.handleClick}/>
-      </div>
+      </>
     )
   }
 }

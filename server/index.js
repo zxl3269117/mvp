@@ -4,6 +4,8 @@ const db = require("../database/index.js");
 
 var exampleData = require("../example-data.json");
 
+const port = process.env.PORT || 7777;
+
 const app = express();
 
 app.use(express.static(path.join(__dirname, "/../client")));
@@ -78,7 +80,6 @@ app.delete('/restart', (req, res) => {
     })
 })
 
-const port = 7777;
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 })

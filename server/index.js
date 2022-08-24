@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/index', (req, res) => {
   db.fetch()
     .then(result => {
-      res.json(result);
+      res.json(result.rows);
     })
     .catch(err => {
       res.status(500).send(err);
@@ -25,36 +25,26 @@ app.get('/index', (req, res) => {
 
 // handle post request for adding veggie/fruit with color with inital count set to 0
 app.post('/add-item', (req, res) => {
-  // console.log('req.body', req.body);
-  var entry = req.body;
+  var data = req.body;
 
-  // convert all data to lowercase
-  for(var k in entry) {
-    entry[k] = entry[k].toLowerCase();
-  }
+  // convert object to an array
+  const entry = Object.keys(data).reduce((entry, key) => {
+    const temp = data[key].toLowerCase();
+    entry.push(temp);
+    return entry;
+    }, []);
 
-  // search DB to check duplicate entry
-  db.fetch(entry)
+  db.save(entry)
     .then(result => {
-      // check if entry exists in DB
-      if (result.length !== 0) {
-        res.status(406).send('Error: already exsit');
-      } else {
-        entry.count = 0;
-
-        // save entry to DB
-        db.save(entry)
-          .then(result => {
-            res.status(201).send(result);
-          })
-          .catch(err => {
-            res.status(500).send('unable to save entry to database. Error message: ' + err);
-          })
-      }
+      res.status(201).send(result);
     })
     .catch(err => {
-      res.status(500).send('fail to fetch entry. Error message: ' + err);
-    })
+      if(err.toString().includes('duplicate')) {
+        res.status(500).send('Food already exists. Please enter a different one');
+      } else {
+        res.status(500).send('unable to save entry to database. ' + err);
+      }
+    });
 })
 
 // handle patch request for adding count on veggie/fruit
@@ -65,7 +55,7 @@ app.patch('/click-item', (req, res) => {
       res.sendStatus(204);
     })
     .catch(err => {
-      res.sendStatus(500);
+      res.status(500).send(err);
     })
 })
 
@@ -76,7 +66,7 @@ app.delete('/restart', (req, res) => {
       res.sendStatus(200);
     })
     .catch(err => {
-      res.sendStatus(500);
+      res.status(500).send(err);
     })
 })
 

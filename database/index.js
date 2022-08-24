@@ -1,9 +1,9 @@
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL || 'postgresql://ziqianli@localhost:5432/ziqianli',
-  // ssl: {
-  //   rejectUnauthorized: false
-  // }
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // save a new entry to DB

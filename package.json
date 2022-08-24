@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "react-dev": "webpack --mode=development",
+    "react-dev": "webpack --mode=development -w",
     "build": "webpack --mode=production",
-    "server": "node server/index.js",
+    "server-dev": "nodemon server/index.js",
     "start": "npm run build && npm run server"
   },
   "repository": {

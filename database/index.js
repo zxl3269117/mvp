@@ -1,20 +1,12 @@
 const { Pool } = require('pg');
 
-if(process.env.DATABASE_URL) {
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  });
-} else {
-  const pool = new Pool({
-    user: 'ziqianli',
-    host: 'localhost',
-    database: 'ziqianli',
-    port: 5432,
-  });
-}
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://ziqianli@localhost:5432/ziqianli',
+  // comment out ssl if running app from local codebase
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 // save a new entry to DB
 module.exports.save = (entry) => {

@@ -1,10 +1,20 @@
 const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://ziqianli@localhost:5432/ziqianli',
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+
+if(process.env.DATABASE_URL) {
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+} else {
+  const pool = new Pool({
+    user: 'ziqianli',
+    host: 'localhost',
+    database: 'ziqianli',
+    port: 5432,
+  });
+}
 
 // save a new entry to DB
 module.exports.save = (entry) => {

@@ -5,7 +5,7 @@
   "engines": {
     "node": "16.x"
   },
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "react-dev": "webpack --mode=development -w",
@@ -26,11 +26,9 @@
   "dependencies": {
     "axios": "^0.27.2",
     "express": "^4.18.1",
-    "mongoose": "^6.3.6",
     "pg": "^8.7.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "sequelize": "^6.21.3",
     "underscore": "^1.13.4"
   },
   "devDependencies": {
